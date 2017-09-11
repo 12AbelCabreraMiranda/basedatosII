@@ -214,5 +214,6 @@ En los ejemplos siguientes se usan las seis funciones del sistema de SQL Server 
 
 
 # Uso de Strings
+**Funciones para el manejo de cadenas**
 
 # Estadística Descriptiva

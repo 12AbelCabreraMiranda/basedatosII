@@ -214,5 +214,142 @@ En los ejemplos siguientes se usan las seis funciones del sistema de SQL Server 
 
 
 # Uso de Strings
+## **Funciones para el manejo de cadenas**
+Transact SQL proporciona una variedad bastante amplia de funciones para llevar a cabo tal tarea. Algunas de las operaciones que podemos realizar son concatenación, obtención de subcadenas, pasar a mayúsculas o minúsculas, eliminar espacios en blanco… incluso detectar la similitud entre expresiones.
+
+#### **substring(cadena,inicio,longitud):**
+Devuelve una parte de la cadena especificada como primer argumento, empezando desde la posición especificada por el segundo argumento y de tantos caracteres de longitud como indica el tercer argumento. 
+_EJEMPLO_
+select substring('Buenas tardes',8,6);
+retorna "tardes".
+
+#### **str(numero,longitud,cantidaddecimales):** 
+Convierte números a caracteres; el primer parámetro indica el valor numérico a convertir, el segundo la longitud del resultado (debe ser mayor o igual a la parte entera del número más el signo si lo tuviese) y el tercero, la cantidad de decimales. El segundo y tercer argumento son opcionales y deben ser positivos. String significa cadena en inglés.
+
+_EJEMPLO_ 
+se convierte el valor numérico "123.456" a cadena, especificando 7 de longitud y 3 decimales:
+
+select str(123.456,7,3);
+
+select str(-123.456,7,3);
+retorna '-123.46';
+
+#### **stuff(cadena1,inicio,cantidad,cadena2):** 
+Inserta la cadena enviada como cuarto argumento, en la posición indicada en el segundo argumento, reemplazando la cantidad de caracteres indicada por el tercer argumento en la cadena que es primer parámetro. Stuff significa rellenar en inglés. 
+
+_EJEMPLO_
+select stuff('abcde',3,2,'opqrs');
+ 
+retorna "abopqrse". Es decir, coloca en la posición 2 la cadena "opqrs" y reemplaza 2 caracteres de la primer cadena.
+Los argumentos numéricos deben ser positivos y menor o igual a la longitud de la primera cadena, caso contrario, retorna "null".
+Si el tercer argumento es mayor que la primera cadena, se elimina hasta el primer carácter.
+
+#### **len(cadena):**
+Retorna la longitud de la cadena enviada como argumento. "len" viene de length, que significa longitud en inglés. 
+
+_EJEMPLO_
+select len('Hola');
+devuelve 4.
+
+#### **char(x):**
+Retorna un caracter en código ASCII del entero enviado como argumento. 
+
+_Ejemplo:_
+select char(65);
+retorna "A".
+
+#### **left(cadena,longitud):** 
+Retorna la cantidad (longitud) de caracteres de la cadena comenzando desde la izquierda, primer caracter. 
+
+_Ejemplo:_
+
+select left('buenos dias',8);
+retorna "buenos d".
+
+#### **right(cadena,longitud):**
+Retorna la cantidad (longitud) de caracteres de la cadena comenzando desde la derecha, último caracter. 
+
+_Ejemplo:_
+
+select right('buenos dias',8);
+retorna "nos dias".
+
+#### **lower(cadena):**
+Retornan la cadena con todos los caracteres en minúsculas. lower significa reducir en inglés. 
+
+_Ejemplo:_
+select lower('HOLA ESTUDIANTE');
+retorna "hola estudiante".
+
+#### **upper(cadena):**
+retornan la cadena con todos los caracteres en mayúsculas. 
+
+_Ejemplo:_
+ select upper('Hola estudiante');
+retorna "HOLA ESTUDIANTE".
+
+#### **ltrim(cadena):**
+Retorna la cadena con los espacios de la izquierda eliminados. Trim significa recortar. 
+
+_Ejemplo:_
+
+select ltrim('     Hola     ');
+retorna "Hola ".
+
+#### **rtrim(cadena):**
+
+Retorna la cadena con los espacios de la derecha eliminados. 
+
+_Ejemplo:_
+
+select rtrim('   Hola   ');
+retorna " Hola".
+
+#### **replace(cadena,cadenareemplazo,cadenareemplazar):**
+Retorna la cadena con todas las ocurrencias de la subcadena reemplazo por la subcadena a reemplazar. 
+
+_Ejemplo:_
+select replace('xxx.sqlserverya.com','x','w');
+retorna "www.sqlserverya.com".
+
+#### **reverse(cadena):**
+Devuelve la cadena invirtiendo el order de los caracteres. 
+
+_Ejemplo:_
+select reverse('Hola');
+retorna "aloH".
+
+#### **patindex(patron,cadena):**
+Devuelve la posición de comienzo (de la primera ocurrencia) del patrón especificado en la cadena enviada como segundo argumento. Si no la encuentra retorna 0. 
+
+_Ejemplos:_
+
+select patindex('%Luis%', 'Jorge Luis Borges');
+retorna 7.
+
+select patindex('%or%', 'Jorge Luis Borges');
+retorna 2.
+
+select patindex('%ar%', 'Jorge Luis Borges');
+retorna 0.
+
+#### **replicate(cadena,cantidad):**
+Repite una cadena la cantidad de veces especificada. 
+
+_Ejemplo:_
+
+select replicate ('Hola',3);
+retorna "HolaHolaHola";
+
+#### **space(cantidad):**
+Retorna una cadena de espacios de longitud indicada por "cantidad", que debe ser un valor positivo. 
+
+_Ejemplo:_
+
+ select 'Hola'+space(1)+'que tal';
+retorna "Hola que tal".
+
+
+
 
 # Estadística Descriptiva

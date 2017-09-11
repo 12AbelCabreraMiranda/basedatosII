@@ -1,0 +1,62 @@
+		--EXPOSICION No. 2--
+		--TEMA: CADENAS--
+		--BASE DE DATOS 1
+
+
+-- Nos permite mostrar una parte de la cadena
+select SUBSTRING('Abel Cabrera',6,7) as PrimerApellido_De_Abel
+
+--Muestra la cantidad de caracter que deseo ver empezando desde la izquierda
+select LEFT('Abel Cabrera',6)
+
+--Muestra la cantidad de caracter que deseo ver empezando desde la derecha
+select RIGHT('Abel Cabrera',7)
+
+--Reemplazar Cadena
+select STUFF('Abel Cabrera',6,7,'Miranda') as SegundoApellido_de_Abel
+
+--Conversion de minuscula a MAYUSCULA
+select UPPER('abel cabrera') as nombre_en_MAYUSCULA
+
+--Conversion de MAYUSCULA a minuscula
+select LOWER('ABEL CABRERA')
+
+--Alinear caracter
+select ltrim(upper ('     Abel Cabrera')) as nombre_Alineado
+
+--cadena, cadena_reemplazo, cadena_reemplazar
+select replace('abel','a','r')
+
+--Reversa del caracter
+select reverse('Abel') as Reversa_de_Nombre
+
+-- COpias de cadena
+select replicate('Abel ',3)
+
+--Retorna espacios entre cadenas
+select 'Abel'+space(5)+'Cabera Miranda'
+
+--Dos columnas
+select UPPER('Abel') as NOMBRE, UPPER('Cabrera') as APELLIDO
+
+--Imprimir las iniciales en una sola columna
+select substring('Abel',1,1) +' '+ substring('Cabrera',1,1)as Iniciales
+
+--imprime las iniciales de cada dato almacenado en cada columna
+select upper(substring('abel',1,1))as nombre, upper(substring('cabrera',1,1))as apellido
+
+--Unir alias, es decir une las columnas, imprimiendola en una sola
+select ('    Abel')+' '+('Cabrera')+' '+('Miranda') as Nombre_y_Apellido
+
+--Cantidad de Caracter individual 
+select ('Abel') as nombre, len('Abel')as cantidad_Caracter
+select('cabrera') as nombre, len('cabrera')as cantidad
+
+--Mi BD Vstring, 
+--Permite mostrar cantidad de caracteres de cada dato de la tabla
+use Vstring
+select *from Estudiante
+select facultad, len(facultad) as CantidadCaracter from Estudiante
+
+-- Convierte el id a varchar
+select nombreCliente+' '+convert(varchar(10),idCliente) from clientes
